@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Search from './components/search';
+import ListingPage from './components/listingPage';
 
-function App() {
+const App = () => {
+  const[ searchQuery, setQuery ] = React.useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App__header'>
+        <nav className='App__header__navigation'>
+          <Search onSubmit = { ( param ) => { console.log( 'app', param ); setQuery( `?s=${param}` ); } } />
+        </nav>
       </header>
+      <section className='App__section'>
+      {
+        '' !== searchQuery && null !== searchQuery ?
+          <ListingPage listType={ 'searchList' } searchQuery = { searchQuery }/>:
+          <ListingPage listType={ 'dashboardItemList' } />
+      }
+      </section>
     </div>
   );
 }

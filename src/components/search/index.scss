@@ -1,0 +1,26 @@
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  & input {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    height: 37px;
+    width: 20%;
+    background: transparent;
+    color: white;
+    border: 0;
+    border: 2px solid rgb(147, 181, 192);
+    outline: none;
+    border-radius: 37px;
+    padding: 0 10px;
+    transition: border .25s ease, width .125s ease .125s;
+  }
+
+  & input:focus {
+    border: 2px solid rgb(221, 230, 233);
+    width: 30%;
+  }
+}

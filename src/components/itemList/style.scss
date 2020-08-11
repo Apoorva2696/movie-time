@@ -1,0 +1,39 @@
+
+
+.title-list, h2 {
+  padding: 20px 40px;
+  box-sizing: border-box;
+  -webkit-transition: opacity 3s ease;
+  transition: opacity 3s ease;
+  opacity: 0;
+  position: relative;
+  z-index: 4;
+  color: rgb(92, 136, 151);
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1em;
+    text-align: left;
+  }
+  
+
+ & .titles-wrapper {
+  display: flex;
+  margin: 10px 0;
+  width: calc(100vw - 80px);
+  box-sizing: border-box;
+  justify-content: space-between;
+  overflow: auto;
+  color: white;
+}
+
+&__page .titles-wrapper {
+  flex-wrap: wrap;
+}
+
+  &[data-loaded='true'] {
+    opacity: 1;
+  }
+}

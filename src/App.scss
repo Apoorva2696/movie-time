@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+  background-color: #e6e6e6;
+  height: 90vh;
+
+  &-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    margin-bottom: 50px;
+    background-color: rgb(108, 154, 182);
+    z-index: 10;
+    
+
+    &__navigation{
+      width: 100%;
+      padding: 40px;
+
+    }
+  }
+
+  &__section{
+    margin-top: 70px;
+    height: calc( 100vh - 80px );
+    overflow-y: scroll ;
+  }
+
+  &-link {
+    color: #61dafb;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
