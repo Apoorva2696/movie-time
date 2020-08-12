@@ -1,8 +1,8 @@
 
 
 .item {
-  width: calc(25% - 10px);
-  min-width: calc(25% - 10px);
+  width: calc(100% - 10px);
+  min-width: calc(100% - 10px);
   background-color: #000000;
   margin-bottom: 10px;
   background-position: center;
@@ -81,5 +81,12 @@
     top: 5%;
     left: 70%;
     display: flex;
+  }
+}
+
+
+@media( min-width: 1024px ) {
+  .item {  
+   min-width: calc(25% - 10px);
   }
 }

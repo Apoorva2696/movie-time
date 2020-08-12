@@ -32,10 +32,16 @@
       padding: 40px;
       display: flex;
 
+      & img {
+        padding: 10px;
+        width: 70px;
+        height: 40px;
+      }
+
     }
 
     & .search{
-        margin-left: 60px;
+        margin-left: 20px;
     }
   }
 
@@ -55,7 +61,8 @@
 
   &-link {
     color: #61dafb;
-    width: 100px;
+    width: 70px;
+    font-size: 1.2rem;
     padding-top: 18px;
     margin-right: 10px;
     text-decoration: none;
@@ -71,3 +78,13 @@
   }
 }
 
+@media( min-width: 1024px ) {
+  & .search{
+    margin-left: 60px;
+  }
+  .App{
+    &-link{
+      width: 100px;
+    }
+  }
+}

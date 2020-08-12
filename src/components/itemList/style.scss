@@ -9,7 +9,6 @@
   position: relative;
   z-index: 4;
   color: rgb(92, 136, 151);
-  min-height: 50vh;
   overflow-y: auto;
 
   &__title {
@@ -47,7 +46,7 @@
 .pagination__container{
 
   width: 100%;
-  padding-left: 45%;
+  padding-left: 25%;
   padding-bottom: 20px;
   &__item{
       color: rgb(10, 121, 196);
@@ -58,5 +57,13 @@
           color: rgb(69, 224, 217);
           cursor: pointer;
       }
+  }
+}
+
+@media( min-width: 1024px ){
+  .pagination__container{
+
+    width: 100%;
+    padding-left: 45%;
   }
 }

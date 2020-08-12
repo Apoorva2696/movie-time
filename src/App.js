@@ -19,7 +19,7 @@ const App = () => {
         <header className='App__header'>
           <nav className='App__header__navigation'>
             <a href="/">
-              <img alt='home' src='favicon.svg' width='200px' height='60px'/>
+              <img alt='home' src='favicon.svg'/>
             </a>
             <Link className='App-link' to="/user-list">My List</Link>
             <Search onSubmit = { ( param ) => { console.log( 'app', param ); setQuery( `?s=${param}` ); } } />
@@ -38,7 +38,11 @@ const App = () => {
           </Route>
           <Route path="/user-list">
             <section className='App__section'>
-              <ListingPage listType={ 'userList' }/>
+            {
+                '' !== searchQuery && null !== searchQuery ?
+                  <ListingPage listType={ 'searchList' } searchQuery = { searchQuery }/>:
+                <ListingPage listType={ 'userList' }/>
+            }
             </section>
           </Route>
         </Switch>
