@@ -17,6 +17,16 @@
     line-height: 1.4;
     margin-bottom: 1em;
     text-align: left;
+
+    &__preloader{
+      display: flex;
+      &__item{
+        height: 200px;
+        width: 25%;
+        background-color: rgb(175, 183, 192);
+        margin: 8px;
+      }
+    }
   }
   
 

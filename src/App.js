@@ -18,11 +18,11 @@ const App = () => {
       <div className='App'>
         <header className='App__header'>
           <nav className='App__header__navigation'>
-            <a href="/">
+            <Link to="/">
               <img alt='home' src='favicon.svg'/>
-            </a>
-            <Link className='App-link' to="/user-list">My List</Link>
-            <Search onSubmit = { ( param ) => { console.log( 'app', param ); setQuery( `?s=${param}` ); } } />
+            </Link>
+            <Link className='App-link' to="/user-list">My Content</Link>
+            <Search onSubmit = { ( param ) => { setQuery( '' !== param ? `?s=${param}`: '' ); } } />
           </nav>
         </header>
         <Switch>
@@ -36,7 +36,7 @@ const App = () => {
               }
             </section>
           </Route>
-          <Route path="/user-list">
+          <Route exact path="/user-list">
             <section className='App__section'>
             {
                 '' !== searchQuery && null !== searchQuery ?

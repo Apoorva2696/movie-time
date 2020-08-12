@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import './index.scss';
 
-const debounce = (callback, wait) => {
-    let timeout;
-    return (...args) => {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => callback.apply(context, args), wait);
-    };
-};
+
+// function debounce(func, context, wait) {
+//     let timeout;
+//     return function() {
+//     //   const context = this;
+//       console.log( context);
+//       const args = arguments;
+//       const later = function() {
+//         timeout = null;
+//         func.apply(context, args);
+//       };
+//       clearTimeout(timeout);
+//       timeout = setTimeout(later, wait);
+//     };
+//   };
 
 /**
  * @render react
@@ -31,15 +38,14 @@ class Search extends Component {
 
     _bind() {
         this.handleKeyUp = this.handleKeyUp.bind( this );
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind( this );
     }
 
     handleChange( e ) {
-        console.log( 'onchange', e.target.value);
+
         this.setState( { searchQuery: e.target.value }, 
             () => {
                 this.props.onSubmit( this.state.searchQuery );
-                console.log( 'onchange', this.state.searchQuery);
             }
         );
     }
