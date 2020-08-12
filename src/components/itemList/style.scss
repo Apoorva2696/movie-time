@@ -1,4 +1,20 @@
 
+/** keyframe for placeholder animation */
+@keyframes animatePlaceholder {
+	from {
+		background-color: #faf2f2;
+		background-color:  #faf2f2;
+	}
+
+	to {
+		background-color: #e9e0e0;
+		background-color:  #e9e0e0;
+	}
+}
+
+@mixin placeholder-animation() {
+	animation: animatePlaceholder 1s alternate infinite cubic-bezier(.53,.32,.73,.48);
+}
 
 .title-list, h2 {
   padding: 20px 40px;
@@ -23,8 +39,9 @@
       &__item{
         height: 200px;
         width: 25%;
-        background-color: rgb(175, 183, 192);
+        background-color: rgb(197, 206, 218);
         margin: 8px;
+        @include placeholder-animation();
       }
     }
   }
@@ -91,3 +108,4 @@
     }
   }
 }
+
