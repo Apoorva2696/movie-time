@@ -86,7 +86,8 @@
 
 
 @media( min-width: 1024px ) {
-  .item {  
-   min-width: calc(25% - 10px);
+  .item {
+    width: calc(25% - 10px);
+    min-width: calc(25% - 10px);
   }
 }

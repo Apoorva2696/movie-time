@@ -98,12 +98,12 @@ class ItemList extends Component {
     return (
       <div
         className={_className} data-loaded={this.state.mounted}>
-        <div className={'title-list__title'}>
+        <div className='title-list__title'>
           <h1>{this.props.title}</h1>
-          <div className={'titles-wrapper'}>
-            {titles}
+          <div className='titles-wrapper'>
+            { titles ? titles: <div className='titles-wrapper__no-data'> {'No Results Found!'}</div>}
           </div>
-          { 'searchList' === type ? <div className ='pagination__container'>
+          { 'searchList' === type && titles ? <div className ='pagination__container'>
                     <span className = 'pagination__container__item' onClick={ () => this.setState({page:1}, this.loadContent ) }>1</span>
                     <span className = 'pagination__container__item' onClick={ () => this.setState({page:2}, this.loadContent) }>2</span>
                     <span className = 'pagination__container__item' onClick={ () => this.setState({page:3}, this.loadContent) }>3</span>

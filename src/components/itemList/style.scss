@@ -27,6 +27,13 @@
   box-sizing: border-box;
   color: white;
   overflow-x: auto;
+
+  &__no-data{
+    height: 30vh;
+    margin: 0 auto;
+    padding-top: 70px;
+    color: black;
+  }
 }
 
 &__page .titles-wrapper {
@@ -65,5 +72,12 @@
 
     width: 100%;
     padding-left: 45%;
+  }
+  .title-list__page .titles-wrapper {
+    flex-wrap: wrap;
+  
+    & .item{
+      min-width: calc(33% - 10px);
+    }
   }
 }
