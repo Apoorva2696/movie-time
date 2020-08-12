@@ -1,8 +1,9 @@
 import React, { Fragment }  from 'react';
 import ItemList  from "../itemList";
 import { dashboardItemList, userItemList, searchList } from '../../models';
+import './index.scss';
 
-const listingPage = ( props ) =>  {
+const ListingPage = ( props ) =>  {
 
     const { listType, searchQuery } = props;
     const { api, apiKey, categories } = 'dashboardItemList' === listType ? dashboardItemList: 'searchList' === listType ? searchList: userItemList ;
@@ -19,13 +20,15 @@ const listingPage = ( props ) =>  {
                             title = { item.title }
                             param = { item.param ? item.param: searchQuery }
                             type = { listType }
+                            category = { item.title }
                         />
                     );
                 } )
             }
+            
         </Fragment>
     );
     
 };
 
-export default listingPage;
+export default ListingPage;

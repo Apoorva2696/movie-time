@@ -5,10 +5,12 @@
   box-sizing: border-box;
   -webkit-transition: opacity 3s ease;
   transition: opacity 3s ease;
-  opacity: 0;
+  opacity: 1;
   position: relative;
   z-index: 4;
   color: rgb(92, 136, 151);
+  min-height: 50vh;
+  overflow-y: auto;
 
   &__title {
     font-size: 20px;
@@ -24,16 +26,37 @@
   margin: 10px 0;
   width: calc(100vw - 80px);
   box-sizing: border-box;
-  justify-content: space-between;
-  overflow: auto;
   color: white;
+  overflow-x: auto;
 }
 
 &__page .titles-wrapper {
   flex-wrap: wrap;
+
+  & .item{
+    min-width: calc(33% - 10px);
+  }
 }
 
   &[data-loaded='true'] {
     opacity: 1;
+  }
+}
+
+
+.pagination__container{
+
+  width: 100%;
+  padding-left: 45%;
+  padding-bottom: 20px;
+  &__item{
+      color: rgb(10, 121, 196);
+      font-size: 16px;
+      margin-left: 15px;
+
+      &:hover {
+          color: rgb(69, 224, 217);
+          cursor: pointer;
+      }
   }
 }

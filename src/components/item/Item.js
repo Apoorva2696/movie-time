@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import './style.scss';
 import ActionButton from '../actionButton';
+import { useDispatch } from 'react-redux';
 
 /**
  * @render react
@@ -16,7 +17,10 @@ import ActionButton from '../actionButton';
  */
 const Item = (props) => {
 
-    const { backdrop, title, score, overview } = props;
+  const dispatch = useDispatch();
+
+  const { item, showButtons } = props;
+  const { backdrop, title, score, overview } = item;
     
   return (
     <div className= 'item' style={{ backgroundImage: 'url(' + backdrop + ')' }} >
@@ -24,9 +28,20 @@ const Item = (props) => {
         <div className='item__title'>{title}</div>
         { score && <div className='item__rating'>{score} / 10</div> }
         { overview && <div className='item__plot'>{overview}</div> }
+     
         <div className='item__actions'>
-          <ActionButton icon = { 'watchLater' }/>
-          <ActionButton />
+          { showButtons ? <Fragment>
+            <ActionButton
+              icon = { 'watchLater' }
+              onClick = { () => {
+                dispatch( { type: 'UPDATE_WATCH_LIST', item } ) 
+              } }
+            />
+            <ActionButton onClick = { () => {
+                dispatch( { type: 'UPDATE_USER_CONTENT_LIST', item } ) 
+              } }/>
+            </Fragment>: null
+          }
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 .App {
   text-align: center;
   background-color: #e6e6e6;
-  height: 90vh;
+  height: 100vh;
+  overflow: hidden;
+  color: rgb(92, 136, 151);
 
   &-logo {
     height: 40vmin;
@@ -28,18 +30,35 @@
     &__navigation{
       width: 100%;
       padding: 40px;
+      display: flex;
 
+    }
+
+    & .search{
+        margin-left: 60px;
     }
   }
 
   &__section{
     margin-top: 70px;
+    padding-top: 50px;
     height: calc( 100vh - 80px );
     overflow-y: scroll ;
+
+    &__heading{
+      padding-left: 40px;
+      margin-bottom: 40px;
+      font-size: 30px;
+      color: rgb(67, 114, 129);
+    }
   }
 
   &-link {
     color: #61dafb;
+    width: 100px;
+    padding-top: 18px;
+    margin-right: 10px;
+    text-decoration: none;
   }
 }
 

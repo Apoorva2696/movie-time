@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Item from '../item';
 import './style.scss';
+import { connect } from 'react-redux'
+import userContentList from '../../reducers/userContentList';
 
 
 /**
@@ -13,27 +15,35 @@ import './style.scss';
  *    url="discover/movie?sort_by=popularity.desc&page=1"
  * />
  */
-export default class ItemList extends Component {
+class ItemList extends Component {
 
-  static defaultProps = {
-    title: "Trending now",
-    url: 'discover/movie?sort_by=popularity.desc&page=1'
+  constructor(props) {
+    super(props);
+
+    console.log(this.props.type, this.props.category, this.props.watchList );
+    this.state = {
+      data: 'userList' === this.props.type ? ( 'Watched' === this.props.category ? this.props.watchList: this.props.userList ): {},
+      mounted: false,
+      page: 1,
+      param: this.props.param
+    };
+
+    this.loadContent = this.loadContent.bind(this);
+
   }
 
-  state = {
-    data: [],
-    mounted: false,
-    param: this.props.param
-  };
+  
 
   loadContent() {
-    var requestUrl = this.props.api + this.state.param + this.props.apiKey;
+
+    var requestUrl = this.props.api + `${this.state.param}&page=${this.state.page}` +this.props.apiKey;
+
     fetch(requestUrl).then((response) => {
       return response.json();
     }).then((data) => {
-      this.setState({ data: data });
+      this.setState({ data });
     }).catch((err) => {
-      console.log("There has been an error");
+      console.log("There has been an error", err);
     });
   }
 
@@ -48,15 +58,18 @@ export default class ItemList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.url !== '') {
+    if ( this.props.param !== '' && 'userList' !== this.props.type ) {
       this.loadContent();
       this.setState({ mounted: true });
     }
   }
 
   render() {
-    var titles = '';
-    if (this.state.data.results || this.state.data.Search ) {
+
+    var titles = '' ;
+    const { type } = this.props;
+
+    if ( ( this.state.data && this.state.data.results ) || ( this.state.data && this.state.data.Search ) ) {
       const results = this.state.data.results ? this.state.data.results : this.state.data.Search;
       titles = results.map(function (title, i) {
         
@@ -69,7 +82,11 @@ export default class ItemList extends Component {
           }
 
           return (
-            <Item key={`${name}__${i}`} title={name} score={title.vote_average} overview={title.overview} backdrop={backDrop} />
+            <Item
+              key={`${name}__${i}`}
+              item={ { ...title, title: name, backdrop: backDrop } }
+              showButtons = { 'userList' !== type }
+            />
           );
 
         
@@ -77,6 +94,7 @@ export default class ItemList extends Component {
     }
 
     const _className = 'searchList' === this.props.type ? 'title-list title-list__page': 'title-list';
+
     return (
       <div
         className={_className} data-loaded={this.state.mounted}>
@@ -85,8 +103,24 @@ export default class ItemList extends Component {
           <div className={'titles-wrapper'}>
             {titles}
           </div>
+          { 'searchList' === type ? <div className ='pagination__container'>
+                    <span className = 'pagination__container__item' onClick={ () => this.setState({page:1}, this.loadContent ) }>1</span>
+                    <span className = 'pagination__container__item' onClick={ () => this.setState({page:2}, this.loadContent) }>2</span>
+                    <span className = 'pagination__container__item' onClick={ () => this.setState({page:3}, this.loadContent) }>3</span>
+                    <span className = 'pagination__container__item' onClick={ () => this.setState({page:4}, this.loadContent) }>4</span>
+                    <span className = 'pagination__container__item' onClick={ () => this.setState({page:5}, this.loadContent) }>5</span>
+            </div> : null }
         </div>
       </div>
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    watchList: state.watchList,
+    userList: state.userContentList
+  };
+};
+export default connect(mapStateToProps, null)(ItemList);
